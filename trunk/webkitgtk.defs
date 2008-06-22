@@ -1,4 +1,8 @@
 ;; -*- scheme -*-
+
+;; TODO 
+;; webkit_gtk_page_set_settings, webkit_gtk_page_get_settings
+
 ; object definitions ...
 (define-object Page
   (in-module "GtkWebKit")
@@ -7,6 +11,7 @@
   (gtype-id "WEBKIT_GTK_TYPE_PAGE")
 )
 
+;; waiting for upstream header fix
 (define-object Frame
   (in-module "GtkWebKit")
   (parent "GObject")
@@ -18,8 +23,6 @@
 
 
 ;; From webkitgtkpage.h
-
-;; TODO webkit_gtk_page_set_settings, webkit_gtk_page_get_settings
 
 (define-function webkit_gtk_page_new
   (is-constructor-of "WebKitGtkPage")
@@ -143,10 +146,17 @@
 (define-method get_main_frame
   (of-object "WebKitGtkPage")
   (c-name "webkit_gtk_page_get_main_frame")
-  (return-type "GObject")
+  (return-type "WebKitGtkFrame*")
 )
 
 ;; From webkitgtkframe.h
+
+(define-function webkit_gtk_frame_new
+  (is-constructor-of "WebKitGtkFrame")
+  (c-name "webkit_gtk_frame_new")
+  (caller-owns-return #t)
+  (return-type "WebKitGtkFrame")
+)
 
 (define-method get_page
   (of-object "WebKitGtkFrame")
@@ -157,65 +167,14 @@
    )
 )
 
-(define-method get_markup
-  (of-object "WebKitGtkFrame")
-  (c-name "webkit_gtk_frame_get_markup")
-  (return-type "gchar*")
-  (parameters
-   '("WebKitGtkFrame" "frame")
-   )
-)
-
-(define-method get_inner_text
-  (of-object "WebKitGtkFrame")
-  (c-name "webkit_gtk_frame_get_inner_text")
-  (return-type "gchar*")
-  (parameters
-   '("WebKitGtkFrame" "frame")
-   )
-)
-
-(define-method get_selected_text
-  (of-object "WebKitGtkFrame")
-  (c-name "webkit_gtk_frame_get_selected_text")
-  (return-type "gchar*")
-  (parameters
-   '("WebKitGtkFrame" "frame")
-   )
-)
-
 (define-method get_title
   (of-object "WebKitGtkFrame")
   (c-name "webkit_gtk_frame_get_title")
   (return-type "gchar*")
-  (parameters
-   '("WebKitGtkFrame" "frame")
-   )
 )
 
-(define-method get_child_frames
+(define-method get_location
   (of-object "WebKitGtkFrame")
-  (c-name "webkit_gtk_frame_get_child_frames")
-  (return-type "GSList*")
-  (parameters
-   '("WebKitGtkFrame" "frame")
-   )
-)
-
-(define-method get_position
-  (of-object "WebKitGtkFrame")
-  (c-name "webkit_gtk_frame_get_position")
-  (return-type "GdkPoint*")
-  (parameters
-   '("WebKitGtkFrame" "frame")
-   )
-)
-
-(define-method get_rectangle
-  (of-object "WebKitGtkFrame")
-  (c-name "webkit_gtk_frame_get_rectangle")
-  (return-type "GdkRectangle*")
-  (parameters
-   '("WebKitGtkFrame" "frame")
-   )
+  (c-name "webkit_gtk_frame_get_location")
+  (return-type "gchar*")
 )
