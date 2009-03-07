@@ -6,6 +6,6 @@ Most of the development of PyWebKitGtk happen in Git. API updates, bug fixes and
 How do I sync my git repo to subversion? Easy. Courtesy of Google, they provided us a guide on how to do it. The howto can be found at [http://code.google.com/p/support/wiki/ImportingFromGit Google Code - Importing From Git].
 
 So really, there is no difference between the Git repos and the Subversion repo in terms of 
-_mainline_* changes. But in terms of tags and branches, those happen in Git because it's easier for me to maintain those in Git than in Subversion.
+_mainline_ changes. But in terms of tags and branches, those happen in Git because it's easier for me to maintain those in Git than in Subversion.
 
 * Mainline is what HEAD is, or trunk in Subversion parlance.
