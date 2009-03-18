@@ -4,6 +4,8 @@
 Herein are workarounds and hacks that other developers use to get around things that are either not yet available as an API in WebKit Gtk or workaround to bugs, defects, etc...
 
   # Get the HTML content of a document
+  Author: jhuangjiahua, Ref: http://code.google.com/p/pywebkitgtk/issues/detail?id=4&can=1
+
 {{{
 class WebView(webkit.WebView):
     def get_html(self):
