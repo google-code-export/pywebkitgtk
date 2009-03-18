@@ -1,0 +1,18 @@
+#summary How Do I?
+#labels Phase-Implementation
+
+Herein are workarounds and hacks that other developers use to get around things that are either not yet available as an API in WebKit Gtk or workaround to bugs, defects, etc...
+
+  # Get the HTML content of a document
+{{{
+class WebView(webkit.WebView):
+    def get_html(self):
+        self.execute_script('oldtitle=document.title;document.title=document.documentElement.innerHTML;')
+        html = self.get_main_frame().get_title()
+        self.execute_script('document.title=oldtitle;')
+        return html
+}}}
+
+
+
+*DISCLAIMER*: I haven't tested these personally. It might cause loss of data, corruption, etc.. and I am not going to be responsible for these losses. Use it at your own risk.
